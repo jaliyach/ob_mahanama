@@ -5,29 +5,50 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
   const adultticketprice = 23.5;
   const childticketprice = 10.5;
 
+  const maxAdultCount = 9;
+  const minAdultCount = 0;
+
+
+  const maxChildCount = 4;
+  const minChildCount = 0;
+
+
+
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(0);
 
   const [total, setTotal] = useState(0);
   // eslint-disable-next-line
   const handleIncrement = () => {
-    setCount(count + 1);
-    setTotal(adultticketprice +total);
+
+    if(count < maxAdultCount  ){
+
+      setCount(count + 1);
+      setTotal(adultticketprice +total);
+    }
+
+   
   };
   // eslint-disable-next-line
   const handleDecrement = () => {
+    if(count > minAdultCount  ){
     setCount(count - 1);
     setTotal(total-adultticketprice );
+    }
   };
 
   const handleIncrementChild = () => {
+    if(count2 < maxChildCount  ){
     setCount2(count2 + 1);
     setTotal(childticketprice +total);
+    }
   };
   // eslint-disable-next-line
   const handleDecrementChild = () => {
+    if(count2 > minChildCount  ){
     setCount2(count2 - 1);
-    setTotal(childticketprice - total);
+    setTotal(total - childticketprice );
+    }
   };
 
   const resetCount = () => {
@@ -91,15 +112,16 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
                 <div class="row">
                   <div className="col">Add Adult Ticket</div>
                   <div className="col">
-                    <i class="bi bi-plus" onClick={handleIncrement}></i>
-
+                  <i class="bi bi-dash" onClick={handleDecrement}></i>
 
                     <span style={{ color: "black", fontSize: "1.6em", position: "relative", left: "29px", top: "5px"}}>{count}</span>
                     <BiSolidCircle size={45} color="gold"></BiSolidCircle>
 
+                    &nbsp;&nbsp;
+                    <i class="bi bi-plus" onClick={handleIncrement}></i>
 
 
-                    <i class="bi bi-dash" onClick={handleDecrement}></i>
+                   
                   </div>
                 </div>
               </div>
@@ -115,15 +137,16 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
                 <div class="row">
                   <div className="col">Add Child Ticket</div>
                   <div className="col">
-                    <i class="bi bi-plus" onClick={handleIncrementChild}></i>
-
+                   
+                    <i class="bi bi-dash" onClick={handleDecrementChild}></i>
 
                     <span style={{ color: "black", fontSize: "1.6em", position: "relative", left: "29px", top: "5px"}}>{count2}</span>
                     <BiSolidCircle size={45} color="gold"></BiSolidCircle>
 
+                    &nbsp;&nbsp;
+                    <i class="bi bi-plus" onClick={handleIncrementChild}></i>
 
-
-                    <i class="bi bi-dash" onClick={handleDecrementChild}></i>
+                   
                   </div>
                 </div>
               </div>
