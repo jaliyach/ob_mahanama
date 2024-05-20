@@ -2,14 +2,14 @@ import { useState } from "react";
 import { BiSolidCircle } from "react-icons/bi";
 const CardPopup = ({ isOpen, onClose, cardData }) => {
 
-  const adultticketprice = 23.5;
-  const childticketprice = 10.5;
+  const adultticketprice = 90;
+  const childticketprice = 45;
 
   const maxAdultCount = 9;
   const minAdultCount = 0;
 
 
-  const maxChildCount = 4;
+  const maxChildCount = 3;
   const minChildCount = 0;
 
 
@@ -49,6 +49,13 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
     setCount2(count2 - 1);
     setTotal(total - childticketprice );
     }
+  };
+
+  const onCloseMain = () => {
+    setCount(0);
+    setCount2(0);
+    setTotal(0);
+    onClose();
   };
 
   const resetCount = () => {
@@ -108,7 +115,7 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
               </div>
 
               <div class="form-group">
-              <small id="emailHelp" class="form-text text-muted">adult Ticket   :  $23.5</small>
+              <small id="emailHelp" class="form-text text-muted">adult Ticket   :  £ 90.00  - maximum 9 tickets only</small>
                 <div class="row">
                   <div className="col">Add Adult Ticket</div>
                   <div className="col">
@@ -133,7 +140,7 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
 
 
               <div class="form-group">
-              <small id="emailHelp" class="form-text text-muted">Child Ticket   :  $10.5</small>
+              <small id="emailHelp" class="form-text text-muted">Child Ticket   :  £ 45.00 - maximum 3 tickets only</small>
                 <div class="row">
                   <div className="col">Add Child Ticket</div>
                   <div className="col">
@@ -164,13 +171,13 @@ const CardPopup = ({ isOpen, onClose, cardData }) => {
                   <button type="submit" class="btn btn-outline-dark" onClick={resetCount}>Clear</button>
                 </div>
                 <div className="col">
-                  <button type="submit" class="btn btn-outline-dark" onClick={onClose}>close</button>
+                  <button type="submit" class="btn btn-outline-dark" onClick={onCloseMain}>close</button>
                 </div>
 
                 <div className="col">
                 <div className="row ">
                 <div className="custom-text">
-                 Total  $: {total}
+                 Total  £: {total}
                   </div>
                   
               
